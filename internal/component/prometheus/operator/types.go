@@ -55,6 +55,22 @@ type ScrapeOptions struct {
 	// ScrapeNativeHistograms enables scraping of Prometheus native histograms.
 	ScrapeNativeHistograms bool `alloy:"scrape_native_histograms,attr,optional"`
 
+	// ScrapeClassicHistograms controls whether to always scrape classic histograms even when
+	// native histograms are available.
+	ScrapeClassicHistograms bool `alloy:"scrape_classic_histograms,attr,optional"`
+
+	// ConvertClassicHistogramsToNHCB controls whether classic histograms with buckets are
+	// converted to native histograms with custom buckets (NHCB). False by default.
+	ConvertClassicHistogramsToNHCB bool `alloy:"convert_classic_histograms_to_nhcb,attr,optional"`
+
+	// NativeHistogramBucketLimit is the maximum number of buckets in a native histogram.
+	// 0 means no limit.
+	NativeHistogramBucketLimit uint `alloy:"native_histogram_bucket_limit,attr,optional"`
+
+	// NativeHistogramMinBucketFactor controls the minimum growth factor for native histogram bucket boundaries.
+	// 0 means no limit.
+	NativeHistogramMinBucketFactor float64 `alloy:"native_histogram_min_bucket_factor,attr,optional"`
+
 	// HonorMetadata controls whether metric metadata should be passed to downstream components.
 	HonorMetadata bool `alloy:"honor_metadata,attr,optional"`
 
